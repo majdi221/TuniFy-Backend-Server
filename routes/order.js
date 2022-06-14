@@ -13,7 +13,8 @@ router.post ('/myorders', async (req, res) => {
     res.send({ 
         order: await Order.find({ user: req.body._id }) 
     })
-    
+    console.log(req.headers);
+
     console.log(req.body._id);
     console.log(await Order.find({ user: req.body._id }));
 })
@@ -23,6 +24,7 @@ router.post ('/myorders', async (req, res) => {
 router.post('/addorder', async (req, res) => { 
 const order = new Order (req.body).save((error, data )=>{
     if (data != null){
+        console.log(req.headers);
         return res.status(200).json({reponse : data})
     }
     if (error != null){
